@@ -1,0 +1,12 @@
+# Requirements for Retailytics Project
+# Database: MySQL (DB = retail_sales, Table = sales_fact)
+
+Django==5.0.3
+mysqlclient==2.2.4
+pandas==2.2.2
+openpyxl==3.1.2
+reportlab==4.2.2
+
+# Optional (only if using crispy forms for better UI)
+# django-crispy-forms==2.1
+# crispy-bootstrap5==0.7

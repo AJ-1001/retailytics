@@ -25,19 +25,19 @@ It simulates a **real-world data engineering workflow** by:
 (Add screenshots after running the app)
 
 - **Main Dashboard**  
-`![Main Dashboard](path/to/main_dashboard.png)`
+`![Main Dashboard](screenshots/main.jpg)`
 
 - **Add Sales Data**  
-`![Add Sales](path/to/add_sales.png)`
+`![Add Sales](screenshots/add_sales.jpg)`
 
 - **Total Sales Table with Filters**  
-`![Total Sales](path/to/total_sales.png)`
+`![Total Sales](screenshots/sales_list.jpg)`
 
 - **Top Sales Analysis**  
-`![Top Sales](path/to/top_sales.png)`
+`![Top Sales](screenshots/top_sales.jpg)`
 
-- **Profit & Loss Dashboard**  
-`![Profit & Loss](path/to/profit_loss.png)`
+- **Profit & Loss Dashboard (SOON!!!)**  
+`![Profit & Loss]()`
 
 ---
 
@@ -117,7 +117,12 @@ Open in browser:
 `http://127.0.0.1:8000/`
 
 ---
-
+### For sample data use data provided
+*(Data from sales_data.csv and run etl_scrpts)*
+```bash 
+cd retailytics/etl_scripts
+python etl.py
+```
 
 ---
 

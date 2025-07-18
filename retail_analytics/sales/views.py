@@ -25,7 +25,7 @@ def sales_add(request):
         return redirect("sales_html")
     return render(request, "sales/sales_add.html",{"logo_path": "/static/images/logo.jpg"})
 
-#  Calculate Metrics
+#  Calculate Top
 def sales_top(request):
     total_revenue = Sale.objects.aggregate(Sum("total_revenue"))["total_revenue__sum"] or 0
     top_products = Sale.objects.values("product_name").annotate(total=Sum("total_revenue")).order_by("-total")[:5]
