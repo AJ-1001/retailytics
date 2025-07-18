@@ -1,0 +1,5 @@
+date,store_name,location,product_name,category,units_sold,selling_price,discount
+2025-07-10,AJ Store A,Kozhikode,Apple,Fruits,120,20,0.05
+2025-07-10,AJ Store B,Kochi,Milk,Dairy,200,30,0.1
+2025-07-11,AJ Store A,Kozhikode,Banana,Fruits,90,10,0.1
+2025-07-11,AJ Store C,Banglore,Bread,Bakery,150,15,0.08

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Retailytics{% endblock %}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #d9e4ec);
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #343a40;
+            padding: 15px 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-left img.home-icon {
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .header-left img.home-icon:hover {
+            transform: scale(1.1);
+        }
+        .header h1 {
+            font-size: 2rem;
+            color: #f8f9fa;
+            margin: 0;
+        }
+        .header img.logo {
+            height: 50px;
+        }
+        .footer {
+            background: #343a40;
+            padding: 20px;
+            text-align: center;
+            color: #f8f9fa;
+        }
+        .content {
+            min-height: 85vh;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <img src="/static/images/home.png" class="home-icon" alt="Home" onclick="location.href='/'">
+            <h1>Retailytics</h1>
+        </div>
+        <img src="{{ logo_path }}" class="logo" alt="Logo">
+    </div>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="footer">
+        <div class="contact-card">
+            <h3>Contact Me</h3>
+            <p>Email: analysis@retailytics.com</p>
+            <p>Phone: +91-1234567890</p>
+        </div>
+    </div>
+</body>
+</html>

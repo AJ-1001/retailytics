@@ -1,0 +1,188 @@
+{% extends "sales/base.html" %}
+
+{% block title %}Retailytics - View Sales{% endblock %}
+
+{% block content %}
+<style>
+    .sales-container {
+        max-width: 95%;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    h1 {
+        text-align: center;
+        color: #343a40;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .filter-form {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+    .filter-form input, .filter-form select {
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+        font-size: 14px;
+    }
+    .filter-form input:focus, .filter-form select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0,123,255,0.3);
+        outline: none;
+    }
+    .filter-form button {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .filter-form button:hover {
+        background: linear-gradient(135deg, #0056b3, #004085);
+        transform: translateY(-1px);
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        font-size: 14px;
+    }
+    th {
+        background: #343a40;
+        color: #fff;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+    tr:nth-child(even) {
+        background: #f8f9fa;
+    }
+    tr:hover {
+        background: #f1f3f5;
+    }
+    .sort-btn {
+        background: #6c757d;
+        color: #fff;
+        font-size: 10px;
+        padding: 3px 6px;
+        margin-left: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    .sort-btn:hover {
+        background: #5a6268;
+    }
+</style>
+
+<div class="sales-container">
+    <h1>Total Sales Data</h1>
+
+    <form method="get" class="filter-form">
+        <input type="text" id="query" name="q" placeholder="Enter value..." value="{{ query }}">
+        <select name="filter_by" id="filter_by" onchange="updatePlaceholder()">
+            <option value="">-- Filter By --</option>
+            <option value="date" {% if filter_by == 'date' %}selected{% endif %}>Date</option>
+            <option value="category" {% if filter_by == 'category' %}selected{% endif %}>Category</option>
+            <option value="store_name" {% if filter_by == 'store_name' %}selected{% endif %}>Store Name</option>
+            <option value="product_name" {% if filter_by == 'product_name' %}selected{% endif %}>Product</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date <button class="sort-btn" onclick="sortTable(0)">⇅</button></th>
+                <th>Store <button class="sort-btn" onclick="sortTable(1)">⇅</button></th>
+                <th>Product <button class="sort-btn" onclick="sortTable(2)">⇅</button></th>
+                <th>Category <button class="sort-btn" onclick="sortTable(3)">⇅</button></th>
+                <th>Units Sold <button class="sort-btn" onclick="sortTable(4)">⇅</button></th>
+                <th>Selling Price <button class="sort-btn" onclick="sortTable(5)">⇅</button></th>
+                <th>Discount <button class="sort-btn" onclick="sortTable(6)">⇅</button></th>
+                <th>Total Revenue <button class="sort-btn" onclick="sortTable(7)">⇅</button></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+            <tr>
+                <td>{{ sale.date }}</td>
+                <td>{{ sale.store_name }}</td>
+                <td>{{ sale.product_name }}</td>
+                <td>{{ sale.category }}</td>
+                <td>{{ sale.units_sold }}</td>
+                <td>{{ sale.selling_price }}</td>
+                <td>{{ sale.discount }}</td>
+                <td>{{ sale.total_revenue }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // ✅ Update Placeholder + Date Picker Conversion
+    function updatePlaceholder() {
+        const filter = document.getElementById("filter_by").value;
+        const queryInput = document.getElementById("query");
+
+        if (filter === "date") {
+            queryInput.type = "date";
+            queryInput.placeholder = "Select date";
+        } else {
+            queryInput.type = "text";
+            if (filter === "store_name") queryInput.placeholder = "Enter full store name";
+            else if (filter === "product_name") queryInput.placeholder = "Enter product name";
+            else if (filter === "category") queryInput.placeholder = "Enter category name";
+            else queryInput.placeholder = "Enter value...";
+        }
+    }
+    window.onload = updatePlaceholder;
+
+    // ✅ Sorting Function
+    let sortDirection = {};
+    function sortTable(colIndex) {
+        const table = document.querySelector("table");
+        const rows = Array.from(table.rows).slice(1);
+        sortDirection[colIndex] = !sortDirection[colIndex];
+
+        rows.sort((a, b) => {
+            let x = a.cells[colIndex].innerText;
+            let y = b.cells[colIndex].innerText;
+
+            let xNum = parseFloat(x.replace(/,/g, ''));
+            let yNum = parseFloat(y.replace(/,/g, ''));
+
+            if (!isNaN(xNum) && !isNaN(yNum)) {
+                return sortDirection[colIndex] ? xNum - yNum : yNum - xNum;
+            } else {
+                return sortDirection[colIndex] ? x.localeCompare(y) : y.localeCompare(x);
+            }
+        });
+
+        rows.forEach(row => table.appendChild(row));
+    }
+</script>
+{% endblock %}

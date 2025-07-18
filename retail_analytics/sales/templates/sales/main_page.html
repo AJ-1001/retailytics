@@ -1,0 +1,50 @@
+{% extends "sales/base.html" %}
+
+{% block title %}Retailytics - Home{% endblock %}
+
+{% block content %}
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh;
+        gap: 50px;
+        flex-wrap: wrap;
+    }
+    .box {
+        width: 260px;
+        height: 220px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #fff;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .box:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .add-sale {
+        background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    }
+    .view-sales {
+        background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    }
+    .top-sales {
+        background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+    }
+</style>
+
+<div class="container">
+    <div class="box add-sale" onclick="location.href='/add-sale/'">Add Sale Data</div>
+    <div class="box view-sales" onclick="location.href='/sales-html/'">View Sales</div>
+    <div class="box top-sales" onclick="location.href='/top-sales/'">Top Sales</div>
+</div>
+{% endblock %}

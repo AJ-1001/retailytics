@@ -1,0 +1,98 @@
+{% extends "sales/base.html" %}
+
+{% block title %}Retailytics - Add Sales Data{% endblock %}
+
+{% block content %}
+<style>
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 75vh;
+    }
+    .form-container {
+        background: #ffffff;
+        padding: 30px;
+        width: 350px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        animation: fadeIn 0.4s ease-in-out;
+    }
+    .form-container h1 {
+        text-align: center;
+        color: #343a40;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .form-container label {
+        font-size: 0.9rem;
+        color: #555;
+        margin-bottom: 5px;
+        display: block;
+        font-weight: 600;
+    }
+    .form-container input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-container input:focus {
+        border: 1px solid #007bff;
+        box-shadow: 0 0 5px rgba(0,123,255,0.4);
+        outline: none;
+    }
+    .form-container button {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #28a745, #218838);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .form-container button:hover {
+        background: linear-gradient(135deg, #218838, #1e7e34);
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="form-wrapper">
+    <div class="form-container">
+        <h1>Add Sales Data</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Date</label>
+            <input type="date" name="date" required>
+
+            <label>Store Name</label>
+            <input type="text" name="store_name" placeholder="Enter store name" required>
+
+            <label>Location</label>
+            <input type="text" name="location" placeholder="Enter store location" required>
+
+            <label>Product Name</label>
+            <input type="text" name="product_name" placeholder="Enter product name" required>
+
+            <label>Category</label>
+            <input type="text" name="category" placeholder="Enter category" required>
+
+            <label>Units Sold</label>
+            <input type="number" name="units_sold" placeholder="e.g., 50" required>
+
+            <label>Selling Price</label>
+            <input type="number" step="0.01" name="selling_price" placeholder="e.g., 99.99" required>
+
+            <label>Discount (0.1 = 10%)</label>
+            <input type="number" step="0.01" name="discount" placeholder="e.g., 0.05" required>
+
+            <button type="submit">Add Sale</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
