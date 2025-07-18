@@ -46,8 +46,9 @@ It simulates a **real-world data engineering workflow** by:
 ✅ Filter, search & sort sales data dynamically  
 ✅ Top 5 products by total revenue  
 ✅ Profit/Loss tracking with color-coded results  
-✅ Download reports in **CSV, Excel & PDF** formats  
 ✅ Clean, responsive UI
+ Download reports in **CSV, Excel & PDF** formats  (SOON)
+
 
 ---
 
@@ -57,8 +58,8 @@ It simulates a **real-world data engineering workflow** by:
 |-----------------|-------------|
 | **Python (Django)** | Backend logic & web framework |
 | **MySQL** | Structured sales data storage |
-| **Pandas & OpenPyXL** | CSV & Excel export |
-| **ReportLab** | PDF report generation |
+| **Pandas & OpenPyXL** | CSV & Excel |
+| **ReportLab** | PDF report generation(Upcoming) |
 | **HTML, CSS, JavaScript** | Frontend UI interactivity |
 
 ---
