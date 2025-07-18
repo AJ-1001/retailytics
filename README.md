@@ -25,19 +25,18 @@ It simulates a **real-world data engineering workflow** by:
 (Add screenshots after running the app)
 
 - **Main Dashboard**  
-`![Main Dashboard](screenshots/main.jpg)`
+![Main Dashboard](screenshots/main.jpg)
 
 - **Add Sales Data**  
-`![Add Sales](screenshots/add_sales.jpg)`
+![Add Sales](screenshots/add_sales.jpg)
 
 - **Total Sales Table with Filters**  
-`![Total Sales](screenshots/sales_list.jpg)`
+![Total Sales](screenshots/sales_list.jpg)
 
 - **Top Sales Analysis**  
-`![Top Sales](screenshots/top_sales.jpg)`
+![Top Sales](screenshots/top_sales.jpg)
 
 - **Profit & Loss Dashboard (SOON!!!)**  
-`![Profit & Loss]()`
 
 ---
 
