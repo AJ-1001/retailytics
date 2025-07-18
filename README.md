@@ -136,6 +136,7 @@ python etl.py
 
 ## 🔮 Future Enhancements
 
+✔ Automated Data Entry
 ✔ Profit/Loss calculator
 ✔ Interactive charts (Top Products, Profit vs Loss trends)  
 ✔ Store-wise dashboards  
